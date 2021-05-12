@@ -5,9 +5,9 @@ import java.time.LocalTime;
 public class FramesDTO {
 
     private Integer id;
-    private Integer id_transport_company;
-    private Integer id_stop_departure;
-    private Integer id_stop_arrival;
+    private TransportCompanyDTO id_transport_company;
+    private StopsDTO id_stop_arrival;
+    private StopsDTO id_stop_departure;
     private float price;
     private String category;
     private LocalTime departure_datetime;
@@ -18,21 +18,21 @@ public class FramesDTO {
 
     public void setId(Integer id) {    this.id = id;   }
     //-------------------------------------------------------------------------
-    public Integer getId_transport_company() {   return id_transport_company;   }
+    public TransportCompanyDTO getId_transport_company() {   return id_transport_company;   }
 
-    public void setId_transport_company(Integer id_transport_company) {    this.id_transport_company = id_transport_company;   }
+    public void setId_transport_company(TransportCompanyDTO id_transport_company) {    this.id_transport_company = id_transport_company;   }
 
     //-------------------------------------------------------------------------
-    public Integer getId_stop_departure() {   return id_stop_departure;   }
+    public StopsDTO getId_stop_departure() {   return id_stop_departure;   }
 
-    public void setId_stop_departure(Integer id_stop_departure) {
+    public void setId_stop_departure(StopsDTO id_stop_departure) {
         this.id_stop_departure = id_stop_departure;
     }
 
     //-------------------------------------------------------------------------
-    public Integer getId_stop_arrival() {   return id_stop_arrival;   }
+    public StopsDTO getId_stop_arrival() {   return id_stop_arrival;   }
 
-    public void setId_stop_arrival(Integer id_stop_arrival) {
+    public void setId_stop_arrival(StopsDTO id_stop_arrival) {
         this.id_stop_arrival = id_stop_arrival;
     }
 

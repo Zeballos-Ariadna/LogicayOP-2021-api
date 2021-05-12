@@ -1,5 +1,8 @@
 package edu.unsj.fcefn.lcc.optimizacion.api.Model.Entities;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
+
 import javax.persistence.*;
 import java.time.LocalTime;
 
@@ -13,15 +16,6 @@ public class FrameEntity {
     @Column(name = "id")
     private Integer id;
 
-    @Column(name = "id_transport_company")
-    private Integer id_transport_company;
-
-    @Column(name = "id_stop_departure")
-    private Integer id_stop_departure;
-
-    @Column(name = "id_stop_arrival")
-    private Integer id_stop_arrival;
-
     @Column(name = "price")
     private float price;
 
@@ -34,27 +28,41 @@ public class FrameEntity {
     @Column(name = "arrival_datetime")
     private LocalTime arrival_datetime;
 
+    @OneToOne
+    @JoinColumn(name = "id_transport_company")
+    @NotFound(action = NotFoundAction.IGNORE)
+    private TransportCompanyEntity id_transport_company;
+
+    @OneToOne
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name ="id_stop_departure")
+    private StopEntity id_stop_departure;
+
+    @OneToOne
+    @NotFound(action = NotFoundAction.IGNORE)
+    @JoinColumn(name ="id_stop_arrival")
+    private StopEntity id_stop_arrival;
+
     //
     public Integer getId() {   return id;   }
 
     public void setId(Integer id) {    this.id = id;   }
+    //-------------------------------------------------------------------------
+    public TransportCompanyEntity getId_transport_company() {   return id_transport_company;   }
+
+    public void setId_transport_company(TransportCompanyEntity id_transport_company) {    this.id_transport_company = id_transport_company;   }
 
     //-------------------------------------------------------------------------
-    public Integer getId_transport_company() {   return id_transport_company;   }
+    public StopEntity getId_stop_departure() {   return id_stop_departure;   }
 
-    public void setId_transport_company(Integer id_transport_company) {    this.id_transport_company = id_transport_company;   }
-
-    //-------------------------------------------------------------------------
-    public Integer getId_stop_departure() {   return id_stop_departure;   }
-
-    public void setId_stop_departure(Integer id_stop_departure) {
+    public void setId_stop_departure(StopEntity id_stop_departure) {
         this.id_stop_departure = id_stop_departure;
     }
 
     //-------------------------------------------------------------------------
-    public Integer getId_stop_arrival() {   return id_stop_arrival;   }
+    public StopEntity getId_stop_arrival() {   return id_stop_arrival;   }
 
-    public void setId_stop_arrival(Integer id_stop_arrival) {
+    public void setId_stop_arrival(StopEntity id_stop_arrival) {
         this.id_stop_arrival = id_stop_arrival;
     }
 

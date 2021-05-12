@@ -2,6 +2,7 @@ package edu.unsj.fcefn.lcc.optimizacion.api.Algorithm;
 
 import edu.unsj.fcefn.lcc.optimizacion.api.Model.Domain.FramesDTO;
 import edu.unsj.fcefn.lcc.optimizacion.api.Model.Domain.StopsDTO;
+import edu.unsj.fcefn.lcc.optimizacion.api.Services.AlgorithmService;
 import edu.unsj.fcefn.lcc.optimizacion.api.Services.FramesService;
 import edu.unsj.fcefn.lcc.optimizacion.api.Services.StopsService;
 import org.moeaframework.core.Solution;
@@ -22,6 +23,9 @@ public class RoutingProblem extends AbstractProblem {
 
     @Autowired
     FramesService framesService;
+
+    @Autowired
+    AlgorithmService algorithmService;
 
     List<StopsDTO> stops;
 
@@ -73,12 +77,13 @@ public class RoutingProblem extends AbstractProblem {
 
     private double totalTime(Permutation permutation){//Tiempo de viaje, calcular tiempo de espera
 
+        List<StopsDTO> stops = algorithmService.getStops();
         double totalTime=0;
 
         for(int i=0;i<permutation.size()-1;i++){
             StopsDTO departureStop = stops.get(permutation.get(i));
             StopsDTO arrivalStop = stops.get(permutation.get(i + 1));//Tiempo de tramo-de viaje
-            //StopsDTO arrivalStop = stops.get(permutation.get(i + 2));//Tiempo de espera entre un viaje y otro
+            //StopsDTO departureStop2 = stops.get(permutation.get(i + 2));//Tiempo de espera entre un viaje y otro
 
             List<FramesDTO> frames = framesService
                     .findByIdDepartureStopAndIdArrivalStop(departureStop.getId(),arrivalStop.getId());
