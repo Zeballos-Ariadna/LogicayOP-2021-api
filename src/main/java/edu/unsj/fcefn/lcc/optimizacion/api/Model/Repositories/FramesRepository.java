@@ -9,4 +9,5 @@ import java.util.List;
 @Repository
 public interface FramesRepository extends CrudRepository<FrameEntity, Integer> {
     List<FrameEntity> findAll();
+
 }
